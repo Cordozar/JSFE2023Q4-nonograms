@@ -1,11 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-  
+
+<body class="page">
+  <div class="container">
+    <div class="hangman-block">
+      <img class="hangman-block__img" src="./img/gallows.svg" alt="gallows">
+      <h1 class="title">Hangman Game</h1>
+    </div>
+    <div class="game-block">
+      <ul class="game-block__word-display">
+        <li class="game-block__letter"></li>
+        <li class="game-block__letter"></li>
+        <li class="game-block__letter"></li>
+        <li class="game-block__letter"></li>
+        <li class="game-block__letter"></li>
+        <li class="game-block__letter"></li>
+      </ul>
+      <p class="game-block__hint">
+        Hint: <span class="bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat fugiat voluptatibus
+          necessitatibus.
+          Natus, quam facere?</span>
+      </p>
+      <p class="game-block__guess">
+        Incorect guesses: <span class="bold">0 / 6</span>
+      </p>
+      <div class="game-block__keybord">
+        <button>a</button><button>b</button><button>c</button><button>d</button><button>e</button><button>f</button><button>g</button><button>h</button><button>i</button><button>j</button><button>k</button><button>l</button><button>m</button><button>n</button><button>o</button><button>p</button><button>q</button><button>r</button><button>s</button><button>t</button><button>u</button><button>v</button><button>w</button><button>x</button><button>y</button><button>z</button>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>
