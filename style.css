@@ -52,10 +52,11 @@
   border-bottom: 3px solid #000000;
 }
 .game-block__letter_guessed {
+  margin: -39px 0 35px;
   border-color: transparent;
 }
 .game-block__hint {
-  margin-bottom: 0 0 15px;
+  margin-bottom: 15px;
   font-size: 1rem;
 }
 .game-block__guess {
@@ -133,4 +134,19 @@
 }
 .modal__restart {
   padding: 12px 23px;
+}
+
+@media (max-width: 767px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 15px;
+  }
+  .hangman-block__img {
+    max-width: 200px;
+    margin-bottom: 60px;
+  }
+  .title {
+    display: none;
+  }
 }
