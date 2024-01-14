@@ -150,12 +150,16 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function handleKeyPress(event) {
+    console.log(wrongGuessCount);
     const key = event.key.toLowerCase();
     const pressKey = Array.from(
       document.querySelectorAll('.game-block__char')
     ).filter((btn) => btn.innerText.toLowerCase() === key && !btn.disabled);
     if (pressKey.length) {
       initGame(pressKey[0], key);
+    }
+    if (wrongGuessCount === 6) {
+      document.removeEventListener('keydown', handleKeyPress);
     }
   }
 
