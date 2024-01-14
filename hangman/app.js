@@ -150,7 +150,6 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function handleKeyPress(event) {
-    console.log(wrongGuessCount);
     const key = event.key.toLowerCase();
     const pressKey = Array.from(
       document.querySelectorAll('.game-block__char')
