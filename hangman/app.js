@@ -157,6 +157,9 @@ window.addEventListener('DOMContentLoaded', () => {
     if (pressKey.length) {
       initGame(pressKey[0], key);
     }
+    if (wrongGuessCount === 6) {
+      document.removeEventListener('keydown', handleKeyPress);
+    }
   }
 
   document.addEventListener('keydown', handleKeyPress);
