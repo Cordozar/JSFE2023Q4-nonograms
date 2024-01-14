@@ -63,33 +63,24 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function getRandomWord() {
-    const hintText = document.querySelector('.game-block__hint-text');
-    if (!+localStorage.getItem('isExist')) {
-      let uniqueWord = false;
-      let word;
-      let hint;
+    let uniqueWord = false;
+    let word;
+    let hint;
 
-      while (!uniqueWord) {
-        const randomIndex = Math.floor(Math.random() * wordList.length);
-        word = wordList[randomIndex].word;
-        hint = wordList[randomIndex].hint;
+    while (!uniqueWord) {
+      const randomIndex = Math.floor(Math.random() * wordList.length);
+      word = wordList[randomIndex].word;
+      hint = wordList[randomIndex].hint;
 
-        if (word !== localStorage.getItem('word')) {
-          uniqueWord = true;
-        }
+      if (word !== localStorage.getItem('wordCordozar')) {
+        uniqueWord = true;
       }
-
-      currentWord = word;
-      hintText.innerText = hint;
-      localStorage.setItem('isExist', 1);
-      localStorage.setItem('word', word);
-      localStorage.setItem('hint', hint);
-      console.log(word);
-    } else {
-      currentWord = localStorage.getItem('word');
-      hintText.innerText = localStorage.getItem('hint');
-      console.log(currentWord);
     }
+
+    currentWord = word;
+    document.querySelector('.game-block__hint-text').innerText = hint;
+    localStorage.setItem('wordCordozar', word);
+    console.log(word);
     resetGame();
   }
 
@@ -171,7 +162,6 @@ window.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', handleKeyPress);
 
   restartBtn.addEventListener('click', () => {
-    localStorage.setItem('isExist', 0);
     console.clear();
     getRandomWord();
   });
