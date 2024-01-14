@@ -1,6 +1,34 @@
 import wordList from './word-list.js';
 
 window.addEventListener('DOMContentLoaded', () => {
+  const body = document.querySelector('.page');
+
+  body.innerHTML = `<div class="container">
+                      <div class="hangman-block">
+                        <img class="hangman-block__img" src="./img/gallows.svg" alt="gallows">
+                        <h1 class="title">Hangman Game</h1>
+                      </div>
+                      <div class="game-block">
+                        <ul class="game-block__word-display"></ul>
+                        <p class="game-block__hint">
+                          Hint: <span class="game-block__hint-text bold"></span>
+                        </p>
+                        <p class="game-block__guess">
+                          Incorect guesses: <span class="bold bold_red"></span>
+                        </p>
+                        <div class="game-block__keybord">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal">
+                      <div class="modal__content">
+                        <img class="modal__img" src="./img/lose.gif" alt="result">
+                        <span class="modal__result"></span>
+                        <p class="modal__text"><span class="modal__answer"></span></p>
+                        <button class="modal__restart">Play Again</button>
+                      </div>
+                    </div>`;
+
   const hangmanImage = document.querySelector('.hangman-block__img');
   const wordDisplay = document.querySelector('.game-block__word-display');
   const keyboard = document.querySelector('.game-block__keybord');
@@ -144,6 +172,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   restartBtn.addEventListener('click', () => {
     localStorage.setItem('isExist', 0);
+    console.clear();
     getRandomWord();
   });
 });

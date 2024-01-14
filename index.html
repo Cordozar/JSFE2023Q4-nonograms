@@ -9,39 +9,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="./word-list.js" type="module" defer></script>
-  <script src="./app.js" type="module" defer></script>
+
 </head>
 
 <body class="page">
-  <div class="container">
-    <div class="hangman-block">
-      <img class="hangman-block__img" src="./img/gallows.svg" alt="gallows">
-      <h1 class="title">Hangman Game</h1>
-    </div>
-    <div class="game-block">
-      <ul class="game-block__word-display"></ul>
-      <p class="game-block__hint">
-        Hint: <span class="game-block__hint-text bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-          fugiat voluptatibus
-          necessitatibus.
-          Natus, quam facere?</span>
-      </p>
-      <p class="game-block__guess">
-        Incorect guesses: <span class="bold bold_red">0 / 6</span>
-      </p>
-      <div class="game-block__keybord">
-      </div>
-    </div>
-  </div>
-  <div class="modal">
-    <div class="modal__content">
-      <img class="modal__img" src="./img/lose.gif" alt="result">
-      <span class="modal__result">Game Over!</span>
-      <p class="modal__text">The correct word was: <span class="modal__answer">word</span></p>
-      <button class="modal__restart">Play Again</button>
-    </div>
-  </div>
+  <script src="./word-list.js" type="module"></script>
+  <script src="./app.js" type="module"></script>
 </body>
 
 </html>
