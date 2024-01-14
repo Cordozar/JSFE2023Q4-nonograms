@@ -60,6 +60,7 @@ window.addEventListener('DOMContentLoaded', () => {
       .map(() => '<li class="game-block__letter"></li>')
       .join('');
     modal.classList.remove('show');
+    document.addEventListener('keydown', handleKeyPress);
   }
 
   function getRandomWord() {
