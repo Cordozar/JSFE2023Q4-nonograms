@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', () => {
       el.outerHTML = '';
     });
     wrongGuesses.innerText = `${wrongGuessCount} / ${maxGuesses}`;
-    keyboard.querySelectorAll('.game-block__char').forEach((btn) => {
+    document.querySelectorAll('.game-block__char').forEach((btn) => {
       btn.disabled = false;
       btn.classList.remove(
         'game-block__char_valid',
@@ -109,18 +109,12 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function handleKeyPress(event) {
-    const key = event.key;
-
-    if (currentWord.includes(key)) {
-      [...currentWord].forEach((letter, index) => {
-        if (letter === key) {
-          const letters = wordDisplay.querySelectorAll('li');
-          letters[index].innerText = letter;
-          letters[index].classList.add('game-block__letter_guessed');
-        }
-      });
-    } else {
-      console.log('not exist');
+    const key = event.key.toLowerCase();
+    const pressKey = Array.from(
+      document.querySelectorAll('.game-block__char')
+    ).filter((btn) => btn.innerText.toLowerCase() === key && !btn.disabled);
+    if (pressKey.length) {
+      initGame(pressKey[0], key);
     }
   }
 
