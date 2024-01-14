@@ -12,10 +12,6 @@ const wordList = [
     hint: 'Relating to or situated in the region between the Tropic of Cancer and the Tropic of Capricorn.',
   },
   {
-    word: 'mysterious',
-    hint: 'Difficult or impossible to understand, explain, or identify.',
-  },
-  {
     word: 'enigma',
     hint: 'Something that is mysterious, puzzling, or difficult to understand.',
   },
@@ -38,14 +34,6 @@ const wordList = [
   {
     word: 'secret',
     hint: 'Something kept hidden or unknown to others.',
-  },
-  {
-    word: 'curiosity',
-    hint: 'A strong desire to know or learn something.',
-  },
-  {
-    word: 'obfuscate',
-    hint: 'To confuse or bewilder someone; to make something unclear or difficult to understand.',
   },
 ];
 
