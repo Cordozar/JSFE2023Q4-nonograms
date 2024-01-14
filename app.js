@@ -35,11 +35,33 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function getRandomWord() {
-    const { word, hint } =
-      wordList[Math.floor(Math.random() * wordList.length)];
-    console.log(word);
-    currentWord = word;
-    document.querySelector('.game-block__hint-text').innerText = hint;
+    const hintText = document.querySelector('.game-block__hint-text');
+    if (!+localStorage.getItem('isExist')) {
+      let uniqueWord = false;
+      let word;
+      let hint;
+
+      while (!uniqueWord) {
+        const randomIndex = Math.floor(Math.random() * wordList.length);
+        word = wordList[randomIndex].word;
+        hint = wordList[randomIndex].hint;
+
+        if (word !== localStorage.getItem('word')) {
+          uniqueWord = true;
+        }
+      }
+
+      currentWord = word;
+      hintText.innerText = hint;
+      localStorage.setItem('isExist', 1);
+      localStorage.setItem('word', word);
+      localStorage.setItem('hint', hint);
+      console.log(word);
+    } else {
+      currentWord = localStorage.getItem('word');
+      hintText.innerText = localStorage.getItem('hint');
+      console.log(currentWord);
+    }
     resetGame();
   }
 
@@ -120,5 +142,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('keydown', handleKeyPress);
 
-  restartBtn.addEventListener('click', getRandomWord);
+  restartBtn.addEventListener('click', () => {
+    localStorage.setItem('isExist', 0);
+    getRandomWord();
+  });
 });
