@@ -1,33 +1,102 @@
 import wordList from './word-list.js';
 
+class HangmanBlock {
+  constructor() {
+    this.element = document.createElement('div');
+    this.element.classList.add('hangman-block');
+
+    this.img = document.createElement('img');
+    this.img.classList.add('hangman-block__img');
+    this.img.src = './img/gallows.svg';
+    this.img.alt = 'gallows';
+
+    this.title = document.createElement('h1');
+    this.title.classList.add('title');
+    this.title.textContent = 'Hangman Game';
+
+    this.element.append(this.img);
+    this.element.append(this.title);
+  }
+}
+
+class GameBlock {
+  constructor() {
+    this.element = document.createElement('div');
+    this.element.classList.add('game-block');
+
+    this.wordDisplay = document.createElement('ul');
+    this.wordDisplay.classList.add('game-block__word-display');
+
+    this.hint = document.createElement('p');
+    this.hint.classList.add('game-block__hint');
+    this.hint.innerHTML =
+      'Hint: <span class="game-block__hint-text bold"></span>';
+
+    this.guess = document.createElement('p');
+    this.guess.classList.add('game-block__guess');
+    this.guess.innerHTML =
+      'Incorect guesses: <span class="bold bold_red"></span>';
+
+    this.keyboard = document.createElement('div');
+    this.keyboard.classList.add('game-block__keybord');
+
+    this.element.append(this.wordDisplay);
+    this.element.append(this.hint);
+    this.element.append(this.guess);
+    this.element.append(this.keyboard);
+  }
+}
+
+class Modal {
+  constructor() {
+    this.element = document.createElement('div');
+    this.element.classList.add('modal');
+
+    this.content = document.createElement('div');
+    this.content.classList.add('modal__content');
+
+    this.img = document.createElement('img');
+    this.img.classList.add('modal__img');
+    this.img.src = './img/lose.gif';
+    this.img.alt = 'result';
+
+    this.result = document.createElement('span');
+    this.result.classList.add('modal__result');
+
+    this.text = document.createElement('p');
+    this.text.classList.add('modal__text');
+
+    this.answer = document.createElement('span');
+    this.answer.classList.add('modal__answer');
+
+    this.restartBtn = document.createElement('button');
+    this.restartBtn.classList.add('modal__restart');
+    this.restartBtn.textContent = 'Play Again';
+
+    this.content.append(this.img);
+    this.content.append(this.result);
+    this.content.append(this.text);
+    this.text.append(this.answer);
+    this.content.append(this.restartBtn);
+
+    this.element.append(this.content);
+  }
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   const body = document.querySelector('.page');
 
-  body.innerHTML = `<div class="container">
-                      <div class="hangman-block">
-                        <img class="hangman-block__img" src="./img/gallows.svg" alt="gallows">
-                        <h1 class="title">Hangman Game</h1>
-                      </div>
-                      <div class="game-block">
-                        <ul class="game-block__word-display"></ul>
-                        <p class="game-block__hint">
-                          Hint: <span class="game-block__hint-text bold"></span>
-                        </p>
-                        <p class="game-block__guess">
-                          Incorect guesses: <span class="bold bold_red"></span>
-                        </p>
-                        <div class="game-block__keybord">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal">
-                      <div class="modal__content">
-                        <img class="modal__img" src="./img/lose.gif" alt="result">
-                        <span class="modal__result"></span>
-                        <p class="modal__text"><span class="modal__answer"></span></p>
-                        <button class="modal__restart">Play Again</button>
-                      </div>
-                    </div>`;
+  const container = document.createElement('div');
+  container.classList.add('container');
+
+  const hangmanBlock = new HangmanBlock();
+  const gameBlock = new GameBlock();
+  const modalBlock = new Modal();
+
+  container.append(hangmanBlock.element);
+  container.append(gameBlock.element);
+  body.append(container);
+  body.append(modalBlock.element);
 
   const hangmanImage = document.querySelector('.hangman-block__img');
   const wordDisplay = document.querySelector('.game-block__word-display');
