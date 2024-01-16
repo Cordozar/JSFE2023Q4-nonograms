@@ -232,6 +232,32 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  const startCharCodeRus = 'а'.charCodeAt(0);
+  const endCharCodeRus = 'я'.charCodeAt(0);
+
+  const rusAlphabet = [];
+
+  for (let i = startCharCodeRus; i <= endCharCodeRus; i++) {
+    rusAlphabet.push(String.fromCharCode(i));
+  }
+
+  function handleKeyPress(event) {
+    const key = event.key.toLowerCase();
+    if (rusAlphabet.includes(key)) {
+      alert('Switch to the English keyboard');
+    }
+
+    const pressKey = Array.from(
+      document.querySelectorAll('.game-block__char')
+    ).filter((btn) => btn.innerText.toLowerCase() === key && !btn.disabled);
+    if (pressKey.length) {
+      initGame(pressKey[0], key);
+    }
+    if (wrongGuessCount === 6) {
+      document.removeEventListener('keydown', handleKeyPress);
+    }
+  }
+
   document.addEventListener('keydown', handleKeyPress);
 
   restartBtn.addEventListener('click', () => {
