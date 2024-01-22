@@ -113,10 +113,13 @@ window.addEventListener('DOMContentLoaded', () => {
   function resetGame() {
     correctLetters = [];
     wrongGuessCount = 0;
-    document.querySelectorAll('.hangman-block__limb').forEach((el) => {
-      el.outerHTML = '';
-    });
+
+    document
+      .querySelectorAll('.hangman-block__limb')
+      .forEach((el) => el.remove());
+
     wrongGuesses.innerText = `${wrongGuessCount} / ${maxGuesses}`;
+
     document.querySelectorAll('.game-block__char').forEach((btn) => {
       btn.disabled = false;
       btn.classList.remove(
@@ -124,10 +127,12 @@ window.addEventListener('DOMContentLoaded', () => {
         'game-block__char_invalid'
       );
     });
+
     wordDisplay.innerHTML = currentWord
       .split('')
       .map(() => '<li class="game-block__letter"></li>')
       .join('');
+
     modal.classList.remove('show');
     document.addEventListener('keydown', handleKeyPress);
   }
@@ -156,36 +161,46 @@ window.addEventListener('DOMContentLoaded', () => {
 
   getRandomWord();
 
-  function gameOver(isVictory) {
+  function gameOver(boolean) {
     setTimeout(() => {
-      const modalText = isVictory
-        ? 'You guessed the word: '
-        : 'The right word was: ';
-      modal.querySelector('.modal__img').src = `./img/${
-        isVictory ? 'win' : 'lose'
-      }.gif`;
-      modal.querySelector('.modal__result').innerText = `${
-        isVictory ? 'You Win!' : 'Game Over!'
-      }`;
-      modal.querySelector(
-        '.modal__text'
-      ).innerHTML = `${modalText}<span class="modal__answer">${currentWord}</span>`;
+      let modalText;
+      if (boolean) {
+        modalText = 'You guessed the word: ';
+      } else {
+        modalText = 'The right word was: ';
+      }
+
+      let imagePath;
+      if (boolean) {
+        imagePath = './img/win.gif';
+      } else {
+        imagePath = './img/lose.gif';
+      }
+
+      const modalImg = modal.querySelector('.modal__img');
+      const modalResult = modal.querySelector('.modal__result');
+      const modalTextElement = modal.querySelector('.modal__text');
+
+      modalImg.src = imagePath;
+      modalResult.innerText = boolean ? 'You Win!' : 'Game Over!';
+      modalTextElement.innerHTML = `${modalText}<span class="modal__answer">${currentWord}</span>`;
+
       modal.classList.add('show');
     }, 300);
   }
 
   function initGame(button, clickedLetter) {
-    if (currentWord.includes(clickedLetter)) {
-      button.classList.add('game-block__char_valid');
-      [...currentWord].forEach((letter, index) => {
-        if (letter === clickedLetter) {
-          correctLetters.push(letter);
-          const letters = wordDisplay.querySelectorAll('li');
-          letters[index].innerText = letter;
-          letters[index].classList.add('game-block__letter_guessed');
-        }
-      });
-    } else {
+    currentWord.split('').forEach((letter, index) => {
+      if (letter === clickedLetter) {
+        button.classList.add('game-block__char_valid');
+        correctLetters.push(letter);
+        const letters = wordDisplay.querySelectorAll('li');
+        letters[index].innerText = letter;
+        letters[index].classList.add('game-block__letter_guessed');
+      }
+    });
+
+    if (!currentWord.includes(clickedLetter)) {
       wrongGuessCount += 1;
       button.classList.add('game-block__char_invalid');
       hangmanImage.insertAdjacentHTML(
@@ -197,26 +212,26 @@ window.addEventListener('DOMContentLoaded', () => {
     button.disabled = true;
     wrongGuesses.innerText = `${wrongGuessCount} / ${maxGuesses}`;
 
-    if (wrongGuessCount === maxGuesses) {
-      gameOver(false);
-    }
-    if (correctLetters.length === currentWord.length) {
-      gameOver(true);
+    if (
+      wrongGuessCount === maxGuesses ||
+      correctLetters.length === currentWord.length
+    ) {
+      gameOver(wrongGuessCount === maxGuesses ? false : true);
     }
   }
 
   const startCharCode = 'a'.charCodeAt(0);
   const endCharCode = 'z'.charCodeAt(0);
 
-  for (let i = startCharCode; i <= endCharCode; i++) {
+  for (let charCode = startCharCode; charCode <= endCharCode; charCode++) {
+    const letter = String.fromCharCode(charCode);
+
     const button = document.createElement('button');
     button.classList.add('game-block__char');
-    button.innerHTML = String.fromCharCode(i);
+    button.innerHTML = letter;
     keyboard.append(button);
 
-    button.addEventListener('click', (e) =>
-      initGame(e.target, String.fromCharCode(i))
-    );
+    button.addEventListener('click', (e) => initGame(e.target, letter));
   }
 
   function handleKeyPress(event) {
