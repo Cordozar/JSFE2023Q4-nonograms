@@ -1,5 +1,3 @@
-const crossword = document.querySelector('.crossword');
-
 const size = 10;
 
 function countConsecutiveOnes(arr) {
@@ -76,10 +74,10 @@ const template = [
   [0, 1, 1, 1, 1, 1, 1, 1, 0, 1],
   [1, 0, 0, 1, 0, 1, 0, 1, 0, 1],
   [0, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  [1, 0, 1, 0, 1, 1, 1, 1, 0, 1],
+  [1, 0, 1, 0, 1, 1, 1, 1, 1, 0],
   [0, 1, 1, 0, 1, 1, 1, 1, 0, 1],
   [1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  [0, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  [0, 1, 1, 0, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
   [0, 1, 1, 0, 1, 1, 1, 1, 0, 1],
   [1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
@@ -89,11 +87,17 @@ const template = [
   // [1, 1, 1, 1, 0],
   // [1, 1, 1, 1, 0],
 ];
+console.log(template);
 
 const result = countClues(template);
 console.log('Rows:', result.rows);
 console.log('Columns:', result.cols);
 // ____________________________________________
+
+const crossword = document.querySelector('.crossword');
+const sizeCeil = 30;
+crossword.style.gridTemplateColumns = `repeat(${size}, ${sizeCeil}px)`;
+
 const matrix = [];
 for (let i = 0; i < size; i += 1) {
   matrix[i] = [];
@@ -101,10 +105,35 @@ for (let i = 0; i < size; i += 1) {
     matrix[i][j] = 0;
     const ceil = document.createElement('div');
     ceil.classList.add('cell');
-    ceil.setAttribute('data-cell', `${i}${j}`);
+    ceil.style.cssText = `
+    width: ${sizeCeil}px;
+    height: ${sizeCeil}px;`;
+    ceil.setAttribute('data-cell', `${i} ${j}`);
     crossword.append(ceil);
   }
 }
+
+const leftClues = document.querySelector('.left-clues');
+const topClues = document.querySelector('.top-clues');
+
+function createCluesPanel(arr, selector) {
+  selector.style.gridTemplateColumns = `repeat(${arr[0].length}, ${sizeCeil}px)`;
+
+  for (let row = 0; row < arr.length; row += 1) {
+    for (let col = 0; col < arr[row].length; col += 1) {
+      const ceil = document.createElement('div');
+      ceil.classList.add('cell');
+      ceil.style.cssText = `
+      width: ${sizeCeil}px;
+      height: ${sizeCeil}px;`;
+      ceil.setAttribute('data-clue', `${row} ${col}`);
+      ceil.innerText = arr[row][col] ? `${arr[row][col]}` : '';
+      selector.append(ceil);
+    }
+  }
+}
+createCluesPanel(countClues(template).rows, leftClues);
+createCluesPanel(countClues(template).cols, topClues);
 
 function areArraysEqual(arr1, arr2) {
   if (arr1.length !== arr2.length) {
@@ -126,12 +155,12 @@ function areArraysEqual(arr1, arr2) {
   return console.log('равны');
 }
 
-const cells = crossword.querySelectorAll('.cell');
+const cells = document.querySelectorAll('.crossword > .cell');
 crossword.addEventListener('click', (e) => {
   cells.forEach((cell) => {
     if (e.target === cell) {
       cell.classList.toggle('filled');
-      const [x, y] = cell.dataset.cell.split('');
+      const [x, y] = cell.dataset.cell.split(' ');
       if (!cell.classList.contains('filled')) {
         matrix[x][y] = 0;
       } else {
