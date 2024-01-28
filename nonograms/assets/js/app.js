@@ -1,4 +1,4 @@
-const size = 10;
+const size = 15;
 
 function countConsecutiveOnes(arr) {
   const result = [];
@@ -65,25 +65,45 @@ function countClues(matrix) {
   }
 
   return {
+    maxLengthRows,
+    maxLengthCols,
     rows: alignedArrayCluesRows,
     cols: rotateArrayCluesCols,
   };
 }
 
 const template = [
-  [0, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-  [1, 0, 0, 1, 0, 1, 0, 1, 0, 1],
-  [0, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  [1, 0, 1, 0, 1, 1, 1, 1, 1, 0],
-  [0, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  [0, 1, 1, 0, 1, 1, 1, 1, 1, 1],
-  [1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  [0, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  [0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  [1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1],
+  [0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  [1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1],
+  [0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  [0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+  [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+  [0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+
+  // [0, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+  // [1, 0, 0, 1, 0, 1, 0, 1, 0, 1],
+  // [0, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  // [1, 0, 1, 0, 1, 1, 1, 1, 1, 0],
+  // [0, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  // [0, 1, 1, 0, 1, 1, 1, 1, 1, 1],
+  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  // [0, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
   // [0, 1, 0, 0, 0],
   // [0, 1, 1, 1, 0],
-  // [0, 1, 0, 1, 0],
+  // [0, 1, 0, 1, 1],
   // [1, 1, 1, 1, 0],
   // [1, 1, 1, 1, 0],
 ];
@@ -95,40 +115,40 @@ console.log('Columns:', result.cols);
 // ____________________________________________
 
 const crossword = document.querySelector('.crossword');
-const sizeCeil = 30;
-crossword.style.gridTemplateColumns = `repeat(${size}, ${sizeCeil}px)`;
+const sizeCell = 30;
+crossword.style.gridTemplateColumns = `repeat(${size}, ${sizeCell}px)`;
 
 const matrix = [];
 for (let i = 0; i < size; i += 1) {
   matrix[i] = [];
   for (let j = 0; j < size; j += 1) {
     matrix[i][j] = 0;
-    const ceil = document.createElement('div');
-    ceil.classList.add('cell');
-    ceil.style.cssText = `
-    width: ${sizeCeil}px;
-    height: ${sizeCeil}px;`;
-    ceil.setAttribute('data-cell', `${i} ${j}`);
-    crossword.append(ceil);
+    const cell = document.createElement('div');
+    cell.classList.add('cell');
+    cell.style.cssText = `
+    width: ${sizeCell}px;
+    height: ${sizeCell}px;`;
+    cell.setAttribute('data-cell', `${i} ${j}`);
+    crossword.append(cell);
   }
 }
 
 const leftClues = document.querySelector('.left-clues');
 const topClues = document.querySelector('.top-clues');
 
-function createCluesPanel(arr, selector) {
-  selector.style.gridTemplateColumns = `repeat(${arr[0].length}, ${sizeCeil}px)`;
+function createCluesPanel(arr, element) {
+  element.style.gridTemplateColumns = `repeat(${arr[0].length}, ${sizeCell}px)`;
 
   for (let row = 0; row < arr.length; row += 1) {
     for (let col = 0; col < arr[row].length; col += 1) {
-      const ceil = document.createElement('div');
-      ceil.classList.add('cell');
-      ceil.style.cssText = `
-      width: ${sizeCeil}px;
-      height: ${sizeCeil}px;`;
-      ceil.setAttribute('data-clue', `${row} ${col}`);
-      ceil.innerText = arr[row][col] ? `${arr[row][col]}` : '';
-      selector.append(ceil);
+      const cell = document.createElement('div');
+      cell.classList.add('cell');
+      cell.style.cssText = `
+      width: ${sizeCell}px;
+      height: ${sizeCell}px;`;
+      cell.setAttribute('data-cell', `${row} ${col}`);
+      cell.innerText = arr[row][col] ? `${arr[row][col]}` : '';
+      element.append(cell);
     }
   }
 }
@@ -171,3 +191,74 @@ crossword.addEventListener('click', (e) => {
     }
   });
 });
+
+function splitMatrix(selector, orientation) {
+  const cellsCollection = document.querySelectorAll(
+    `${selector} > [data-cell]`
+  );
+  let width = 0;
+  let height = 0;
+
+  cellsCollection.forEach((el) => {
+    width = Math.max(el.dataset.cell.split(' ')[1], width);
+    height = Math.max(el.dataset.cell.split(' ')[0], height);
+  });
+
+  // Убрал крайние бордеры
+
+  function setBorderStyle(elements, style, value) {
+    elements.forEach((el) => {
+      el.style[style] = value;
+    });
+  }
+
+  const top = document.querySelectorAll(`${selector} > [data-cell^="0"]`);
+  const right = document.querySelectorAll(
+    `${selector} > [data-cell$="${width}"]`
+  );
+  const bottom = document.querySelectorAll(
+    `${selector} > [data-cell^="${height}"]`
+  );
+  const left = document.querySelectorAll(`${selector} > [data-cell$="0"]`);
+
+  setBorderStyle(top, 'borderTop', 'none');
+  setBorderStyle(right, 'borderRight', 'none');
+  setBorderStyle(bottom, 'borderBottom', 'none');
+  setBorderStyle(left, 'borderLeft', 'none');
+
+  // Разбиение полей на квадраты
+
+  if (orientation === 'both' || orientation === 'cols') {
+    for (let i = 4; i < width; i += 5) {
+      const cell = document.querySelectorAll(
+        `${selector} > [data-cell$="${i}"]`
+      );
+      setBorderStyle(cell, 'borderRight', '1px solid red');
+    }
+    for (let i = 5; i < width; i += 5) {
+      const cell = document.querySelectorAll(
+        `${selector} > [data-cell$="${i}"]`
+      );
+      setBorderStyle(cell, 'borderLeft', '1px solid red');
+    }
+  }
+
+  if (orientation === 'both' || orientation === 'rows') {
+    for (let i = 4; i < height; i += 5) {
+      const cell = document.querySelectorAll(
+        `${selector} > [data-cell^="${i}"]`
+      );
+      setBorderStyle(cell, 'borderBottom', '1px solid red');
+    }
+    for (let i = 5; i < height; i += 5) {
+      const cell = document.querySelectorAll(
+        `${selector} > [data-cell^="${i}"]`
+      );
+      setBorderStyle(cell, 'borderTop', '1px solid red');
+    }
+  }
+}
+
+splitMatrix('.top-clues', 'cols');
+splitMatrix('.left-clues', 'rows');
+splitMatrix('.crossword', 'both');
