@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./assets/styles/style.css">
   <title>Японский кроссворд</title>
-  <script src="./assets/js/app.js" defer></script>
+  <script src="./assets/js/app.js" type="module" defer></script>
+  <script src="./assets/js/templates.js" type="module" defer></script>
   <link rel="shortcut icon" href="./assets/img/icon.jpg" type="image/x-icon">
 </head>
 
@@ -16,7 +17,21 @@
     <div class="top-clues"></div>
     <div class="left-clues"></div>
   </div>
-
+  <div class="complexites">
+    <!-- <input type="radio" name="complexity" value="#0000ff" id="easy" checked />
+    <label for="easy" class="complexites__radio easy"></label>
+    <input type="radio" name="complexity" value="#00ffff" id="medium" />
+    <label for="medium" class="complexites__radio medium"></label>
+    <input type="radio" name="complexity" value="#00ffff" id="hard" />
+    <label for="hard" class="complexites__radio hard"></label> -->
+  </div>
+  <div class="modal">
+    <div class="modal__content">
+      <img class="modal__img" src="" alt="result">
+      <span class="modal__result">Great! You have solved the nonogram!</span>
+      <button class="modal__restart">Play Again</button>
+    </div>
+  </div>
 
 </body>
 

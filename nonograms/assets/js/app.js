@@ -1,25 +1,37 @@
-const size = 15;
+import templates from './templates.js';
+
+let size = 5;
 const sizeCells = 30;
 
 const template = [
-  [0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  [1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1],
-  [0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  [1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
-  [0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  [0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-  [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-  [0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  // [0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  // [1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1],
+  // [0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  // [1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+  // [0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  // [0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+  // [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+  // [0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
 
-  // [0, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  // [0, 0, 0, 0, 1, 1, 1, 1, 0, 1],
   // [1, 0, 0, 1, 0, 1, 0, 1, 0, 1],
   // [0, 1, 1, 0, 1, 1, 1, 1, 0, 1],
   // [1, 0, 1, 0, 1, 1, 1, 1, 1, 0],
@@ -31,11 +43,11 @@ const template = [
   // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
   // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
 
-  // [0, 1, 0, 0, 0],
-  // [0, 1, 1, 1, 0],
-  // [0, 1, 0, 1, 1],
-  // [1, 1, 1, 1, 0],
-  // [1, 1, 1, 1, 0],
+  // [0, 0, 0, 0, 0],
+  // [0, 0, 0, 0, 0],
+  // [0, 0, 1, 0, 0],
+  // [0, 0, 0, 0, 0],
+  // [0, 0, 0, 0, 0],
 ];
 
 // Создание кроссворда
@@ -63,7 +75,7 @@ function createCrossword(sizeMatrix, sizeCell) {
   return matrix;
 }
 
-const curMatrix = createCrossword(size, 30);
+let curMatrix = createCrossword(size, 30);
 
 // Рассчет ключей
 
@@ -138,11 +150,11 @@ function calculateClues(matrix) {
     cols: rotateArrayCluesCols,
   };
 }
-console.log(template);
+// console.log(template);
 
-const result = calculateClues(template);
-console.log('Rows:', result.rows);
-console.log('Columns:', result.cols);
+// let result = calculateClues(template);
+// console.log('Rows:', result.rows);
+// console.log('Columns:', result.cols);
 
 // Создание панелей ключей
 
@@ -214,13 +226,13 @@ function splitMatrix(selector, orientation) {
       const cell = document.querySelectorAll(
         `${selector} > [data-cell$=" ${i}"]`
       );
-      setBorderStyle(cell, 'borderRight', '1px solid red');
+      setBorderStyle(cell, 'borderRight', '1.5px solid #313195');
     }
     for (let i = firstLine[1]; i < width; i += step) {
       const cell = document.querySelectorAll(
         `${selector} > [data-cell$=" ${i}"]`
       );
-      setBorderStyle(cell, 'borderLeft', '1px solid red');
+      setBorderStyle(cell, 'borderLeft', '1.5px solid #313195');
     }
   }
 
@@ -229,13 +241,13 @@ function splitMatrix(selector, orientation) {
       const cell = document.querySelectorAll(
         `${selector} > [data-cell^="${i}"]`
       );
-      setBorderStyle(cell, 'borderBottom', '1px solid red');
+      setBorderStyle(cell, 'borderBottom', '1.5px solid #313195');
     }
     for (let i = firstLine[1]; i < height; i += step) {
       const cell = document.querySelectorAll(
         `${selector} > [data-cell^="${i}"]`
       );
-      setBorderStyle(cell, 'borderTop', '1px solid red');
+      setBorderStyle(cell, 'borderTop', '1.5px solid #313195');
     }
   }
 }
@@ -243,6 +255,20 @@ function splitMatrix(selector, orientation) {
 splitMatrix('.top-clues', 'cols');
 splitMatrix('.left-clues', 'rows');
 splitMatrix('.crossword', 'both');
+
+const modal = document.querySelector('.modal');
+
+function gameOver() {
+  setTimeout(() => {
+    const modalImg = modal.querySelector('.modal__img');
+    const modalResult = modal.querySelector('.modal__result');
+
+    modalImg.src = './img/win.gif';
+    modalResult.innerText = 'You Win!';
+
+    modal.classList.add('show');
+  }, 300);
+}
 
 // Сравнить матрицы
 
@@ -262,8 +288,9 @@ function areArraysEqual(arr1, arr2) {
       }
     }
   }
+  console.log('равны');
 
-  return console.log('равны');
+  return gameOver();
 }
 
 const cells = document.querySelectorAll('.crossword > .cell');
@@ -282,3 +309,59 @@ crossword.addEventListener('click', (e) => {
     }
   });
 });
+
+const resetBtn = document.querySelector('.modal__restart');
+resetBtn.addEventListener('click', () => {
+  crossword.innerHTML = '';
+  leftClues.innerHTML = '';
+  topClues.innerHTML = '';
+  curMatrix = createCrossword(size, 30);
+  result = calculateClues(template);
+  createCluesPanel(calculateClues(template).rows, leftClues);
+  createCluesPanel(calculateClues(template).cols, topClues);
+  splitMatrix('.top-clues', 'cols');
+  splitMatrix('.left-clues', 'rows');
+  splitMatrix('.crossword', 'both');
+  modal.classList.remove('show');
+});
+
+const complexites = Object.entries(templates);
+const complexityBox = document.querySelector('.complexites');
+let sizeCrossword = 5;
+complexites.forEach((el, i) => {
+  const textRadio =
+    i === 0
+      ? `<input type="radio" name="complexity" value="#0000ff" id="${el[0]}" checked />`
+      : `<input type="radio" name="complexity" value="#0000ff" id="${el[0]}"/>`;
+
+  complexityBox.insertAdjacentHTML(
+    'beforeend',
+    `${textRadio}
+    <label for="${el[0]}" class="complexites__radio ${el[0]}" data-size="${sizeCrossword}">${el[0]}</label>`
+  );
+  sizeCrossword += 5;
+});
+
+const complexityInputs = document.querySelectorAll('.complexites__radio');
+console.log(complexityInputs);
+complexityInputs.forEach((el) => {
+  el.addEventListener('click', () => {
+    console.log(+el.dataset.size);
+    size = +el.dataset.size;
+    crossword.innerHTML = '';
+    topClues.innerHTML = '';
+    leftClues.innerHTML = '';
+    const picture = Object.entries(templates[el.innerText])[0][1];
+    console.log(picture);
+    createCrossword(size, 30);
+    createCluesPanel(calculateClues(picture).rows, leftClues);
+    createCluesPanel(calculateClues(picture).cols, topClues);
+  });
+});
+
+// const complexites = document.querySelectorAll('.complexites__radio');
+
+// console.log(Object.entries(templates));
+// complexites.forEach((el, i) => {
+//   el.innerText = ;
+// });

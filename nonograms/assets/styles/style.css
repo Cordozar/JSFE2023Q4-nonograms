@@ -8,6 +8,8 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  flex-direction: column;
+  row-gap: 40px;
 }
 
 .game {
@@ -20,7 +22,7 @@ body {
 .left-clues,
 .top-clues {
   display: grid;
-  border: 3px solid #584f4f;
+  border: 3px solid #000000;
 }
 
 .crossword {
@@ -49,9 +51,99 @@ body {
   width: 50px;
   height: 50px;
   margin: 0;
-  border: 1px solid #a7a7a7;
+  border: 0.5px solid #a7a7a7;
 }
 
 .filled {
   background-color: #000000;
+}
+
+.modal {
+  position: fixed;
+  padding: 0 10px;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.608);
+  opacity: 0;
+  transition: opacity 0.3s linear;
+  pointer-events: none;
+}
+.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal__content {
+  width: 100%;
+  max-width: 420px;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal__img {
+  display: block;
+  max-width: 300px;
+  margin-bottom: 20px;
+  object-fit: fill;
+}
+.modal__result {
+  display: block;
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+.modal__text {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  font-size: 500;
+  text-align: center;
+}
+.modal__answer {
+  font-weight: 600;
+  color: #5e51be;
+}
+.modal__restart {
+  padding: 12px 23px;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+.complexites {
+  display: flex;
+  column-gap: 20px;
+}
+
+.complexites__radio {
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #7eb177;
+  border-radius: 5px;
+  
+}
+.easy {
+  /* background-color: blue; */
+}
+.medium {
+  /* background-color: #00ffff; */
+}
+.hard {
+  /* background-color: #1eff00; */
+}
+
+input[type='radio']:checked + label {
+  border: black solid 2px;
 }
