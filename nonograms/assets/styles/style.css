@@ -4,11 +4,11 @@
 
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
-  flex-direction: column;
   row-gap: 40px;
 }
 
@@ -54,13 +54,16 @@ body {
   border: 0.5px solid #a7a7a7;
 }
 
+.crossword .cell {
+  cursor: pointer;
+}
+
 .filled {
   background-color: #000000;
 }
 
 .modal {
   position: fixed;
-  padding: 0 10px;
   top: 0;
   left: 0;
   z-index: 100;
@@ -69,6 +72,7 @@ body {
   align-items: center;
   width: 100%;
   height: 100%;
+  padding: 0 10px;
   background-color: rgba(0, 0, 0, 0.608);
   opacity: 0;
   transition: opacity 0.3s linear;
@@ -79,14 +83,14 @@ body {
   pointer-events: auto;
 }
 .modal__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   max-width: 420px;
   padding: 30px;
   background-color: #ffffff;
   border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 .modal__img {
   display: block;
@@ -110,7 +114,7 @@ body {
   font-weight: 600;
   color: #5e51be;
 }
-.modal__restart {
+.modal__start {
   padding: 12px 23px;
 }
 
@@ -123,16 +127,15 @@ input[type='radio'] {
   column-gap: 20px;
 }
 
-.complexites__radio {
-  display: inline-block;
+.complexites__radio-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 60px;
   height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: #7eb177;
   border-radius: 5px;
-  
+  cursor: pointer;
 }
 .easy {
   /* background-color: blue; */
@@ -146,4 +149,26 @@ input[type='radio'] {
 
 input[type='radio']:checked + label {
   border: black solid 2px;
+}
+
+.restart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  background-color: #7eb177;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pictures {
+  display: flex;
+  column-gap: 15px;
+}
+
+.pictures__picture {
+  text-transform: capitalize;
+  text-decoration: underline;
+  cursor: pointer;
 }

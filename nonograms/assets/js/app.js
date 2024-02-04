@@ -2,57 +2,20 @@ import templates from './templates.js';
 
 let size = 5;
 const sizeCells = 30;
+let chooseComplexity = 'easy';
 
-const template = [
-  // [0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  // [1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1],
-  // [0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  // [1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
-  // [0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  // [0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-  // [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-  // [0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+function getRandomPicture(complexity) {
+  const arrPictures = Object.entries(templates[complexity]);
+  const indexRandom = Math.floor(arrPictures.length * Math.random());
+  console.log(arrPictures[indexRandom][1]);
+  return arrPictures[indexRandom][1];
+}
 
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  // [0, 0, 0, 0, 1, 1, 1, 1, 0, 1],
-  // [1, 0, 0, 1, 0, 1, 0, 1, 0, 1],
-  // [0, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  // [1, 0, 1, 0, 1, 1, 1, 1, 1, 0],
-  // [0, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  // [0, 1, 1, 0, 1, 1, 1, 1, 1, 1],
-  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  // [0, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-  // [1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-
-  // [0, 0, 0, 0, 0],
-  // [0, 0, 0, 0, 0],
-  // [0, 0, 1, 0, 0],
-  // [0, 0, 0, 0, 0],
-  // [0, 0, 0, 0, 0],
-];
+let template = getRandomPicture(chooseComplexity);
 
 // Создание кроссворда
 
-const crossword = document.querySelector('.crossword');
+const crossword = document.getElementById('crossword');
 
 function createCrossword(sizeMatrix, sizeCell) {
   const matrix = [];
@@ -150,7 +113,6 @@ function calculateClues(matrix) {
     cols: rotateArrayCluesCols,
   };
 }
-// console.log(template);
 
 // let result = calculateClues(template);
 // console.log('Rows:', result.rows);
@@ -274,54 +236,69 @@ function gameOver() {
 
 function areArraysEqual(arr1, arr2) {
   if (arr1.length !== arr2.length) {
+    console.log(false);
     return false;
   }
 
   for (let i = 0; i < arr1.length; i++) {
     if (arr1[i].length !== arr2[i].length) {
+      console.log(false);
+
       return false;
     }
 
     for (let j = 0; j < arr1[i].length; j++) {
       if (arr1[i][j] !== arr2[i][j]) {
+        console.log(false);
+
         return false;
       }
     }
   }
-  console.log('равны');
 
-  return gameOver();
+  console.log(true);
+  gameOver();
+  // template = getRandomPicture(document.querySelector('input:checked').id);
 }
 
-const cells = document.querySelectorAll('.crossword > .cell');
-crossword.addEventListener('click', (e) => {
-  cells.forEach((cell) => {
-    if (e.target === cell) {
-      cell.classList.toggle('filled');
-      const [x, y] = cell.dataset.cell.split(' ');
-      if (!cell.classList.contains('filled')) {
-        curMatrix[x][y] = 0;
-      } else {
-        curMatrix[x][y] = 1;
-      }
-      // console.log(curMatrix);
-      areArraysEqual(curMatrix, template);
-    }
-  });
-});
+function addListenerForCells() {
+  const cells = crossword.querySelectorAll('.cell');
 
-const resetBtn = document.querySelector('.modal__restart');
-resetBtn.addEventListener('click', () => {
+  crossword.addEventListener('click', (e) => {
+    cells.forEach((cell) => {
+      if (e.target === cell) {
+        cell.classList.toggle('filled');
+        const [x, y] = cell.dataset.cell.split(' ');
+        if (!cell.classList.contains('filled')) {
+          curMatrix[x][y] = 0;
+        } else {
+          curMatrix[x][y] = 1;
+        }
+        // console.log(curMatrix);
+
+        areArraysEqual(curMatrix, template);
+      }
+    });
+  });
+}
+
+addListenerForCells();
+
+const startBtn = document.querySelector('.modal__start');
+startBtn.addEventListener('click', () => {
   crossword.innerHTML = '';
   leftClues.innerHTML = '';
   topClues.innerHTML = '';
   curMatrix = createCrossword(size, 30);
-  result = calculateClues(template);
+  template = getRandomPicture(chooseComplexity);
   createCluesPanel(calculateClues(template).rows, leftClues);
   createCluesPanel(calculateClues(template).cols, topClues);
   splitMatrix('.top-clues', 'cols');
   splitMatrix('.left-clues', 'rows');
   splitMatrix('.crossword', 'both');
+  addListenerForCells();
+  addPictureSection(chooseComplexity);
+  choosePicture();
   modal.classList.remove('show');
 });
 
@@ -331,37 +308,93 @@ let sizeCrossword = 5;
 complexites.forEach((el, i) => {
   const textRadio =
     i === 0
-      ? `<input type="radio" name="complexity" value="#0000ff" id="${el[0]}" checked />`
-      : `<input type="radio" name="complexity" value="#0000ff" id="${el[0]}"/>`;
+      ? `<input type="radio" name="complexity" class="complexites__radio" value="#0000ff" id="${el[0]}" checked />`
+      : `<input type="radio" name="complexity" class="complexites__radio" value="#0000ff" id="${el[0]}"/>`;
 
   complexityBox.insertAdjacentHTML(
     'beforeend',
     `${textRadio}
-    <label for="${el[0]}" class="complexites__radio ${el[0]}" data-size="${sizeCrossword}">${el[0]}</label>`
+    <label for="${el[0]}" class="complexites__radio-label ${el[0]}" data-size="${sizeCrossword}">${el[0]}</label>`
   );
   sizeCrossword += 5;
 });
 
-const complexityInputs = document.querySelectorAll('.complexites__radio');
-console.log(complexityInputs);
-complexityInputs.forEach((el) => {
+function addPictureSection(complexity) {
+  const picturesBox = document.querySelector('.pictures');
+  picturesBox.innerHTML = '';
+  const pictures = Object.entries(templates[complexity]);
+  pictures.forEach((el) => {
+    const text =
+      el[1] === template
+        ? `<input type="radio" name="picture" class="pictures__picture" id="${el[0]}"  checked />`
+        : `<input type="radio" name="picture" class="pictures__picture" id="${el[0]}" />`;
+
+    picturesBox.insertAdjacentHTML(
+      'beforeend',
+      `${text}
+      <label for="${el[0]}" class="pictures__picture-label">${el[0]}</label>`
+    );
+  });
+}
+
+addPictureSection(chooseComplexity);
+
+function choosePicture() {
+  const pictures = document.querySelectorAll('.pictures__picture-label');
+  pictures.forEach((picture) => {
+    picture.addEventListener('click', () => {
+      crossword.innerHTML = '';
+      topClues.innerHTML = '';
+      leftClues.innerHTML = '';
+      template = templates[chooseComplexity][picture.innerText];
+      console.log(template);
+      curMatrix = createCrossword(size, 30);
+      createCluesPanel(calculateClues(template).rows, leftClues);
+      createCluesPanel(calculateClues(template).cols, topClues);
+      splitMatrix('.top-clues', 'cols');
+      splitMatrix('.left-clues', 'rows');
+      splitMatrix('.crossword', 'both');
+      addListenerForCells();
+    });
+  });
+}
+
+choosePicture();
+
+const complexityInputs = document.querySelectorAll('.complexites__radio-label');
+complexityInputs.forEach((el, i) => {
   el.addEventListener('click', () => {
-    console.log(+el.dataset.size);
-    size = +el.dataset.size;
-    crossword.innerHTML = '';
-    topClues.innerHTML = '';
-    leftClues.innerHTML = '';
-    const picture = Object.entries(templates[el.innerText])[0][1];
-    console.log(picture);
-    createCrossword(size, 30);
-    createCluesPanel(calculateClues(picture).rows, leftClues);
-    createCluesPanel(calculateClues(picture).cols, topClues);
+    const radioInputs = document.querySelectorAll('.complexites__radio');
+    if (!radioInputs[i].checked) {
+      size = +el.dataset.size;
+      crossword.innerHTML = '';
+      topClues.innerHTML = '';
+      leftClues.innerHTML = '';
+      chooseComplexity = el.innerText;
+      template = getRandomPicture(chooseComplexity);
+      curMatrix = createCrossword(size, 30);
+      createCluesPanel(calculateClues(template).rows, leftClues);
+      createCluesPanel(calculateClues(template).cols, topClues);
+      splitMatrix('.top-clues', 'cols');
+      splitMatrix('.left-clues', 'rows');
+      splitMatrix('.crossword', 'both');
+      addListenerForCells();
+      addPictureSection(chooseComplexity);
+      choosePicture();
+    }
   });
 });
 
-// const complexites = document.querySelectorAll('.complexites__radio');
+const resetBtn = document.querySelector('.restart');
 
-// console.log(Object.entries(templates));
-// complexites.forEach((el, i) => {
-//   el.innerText = ;
-// });
+resetBtn.addEventListener('click', () => {
+  const cells = crossword.querySelectorAll('.cell');
+  cells.forEach((cell) => {
+    cell.classList.remove('filled');
+  });
+  for (let i = 0; i < size; i += 1) {
+    for (let j = 0; j < size; j += 1) {
+      curMatrix[i][j] = 0;
+    }
+  }
+});
