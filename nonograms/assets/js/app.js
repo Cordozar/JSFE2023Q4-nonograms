@@ -264,17 +264,31 @@ function areArraysEqual(arr1, arr2) {
 function addListenerForCells() {
   const cells = crossword.querySelectorAll('.cell');
 
+  crossword.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    cells.forEach((cell) => {
+      if (e.target === cell) {
+        cell.classList.toggle('mark');
+        cell.classList.remove('filled');
+        const [x, y] = cell.dataset.cell.split(' ');
+        curMatrix[x][y] = 0;
+
+        areArraysEqual(curMatrix, template);
+      }
+    });
+  });
+
   crossword.addEventListener('click', (e) => {
     cells.forEach((cell) => {
       if (e.target === cell) {
         cell.classList.toggle('filled');
         const [x, y] = cell.dataset.cell.split(' ');
+        cell.classList.remove('mark');
         if (!cell.classList.contains('filled')) {
           curMatrix[x][y] = 0;
         } else {
           curMatrix[x][y] = 1;
         }
-        // console.log(curMatrix);
 
         areArraysEqual(curMatrix, template);
       }
@@ -398,3 +412,12 @@ resetBtn.addEventListener('click', () => {
     }
   }
 });
+
+function handleRightClick(event) {
+  // Предотвращаем стандартное контекстное меню
+  event.preventDefault();
+
+  // Ваш код для выполнения при нажатии правой кнопки мыши
+
+  // Добавьте свою логику здесь
+}
