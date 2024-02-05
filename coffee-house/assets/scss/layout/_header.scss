@@ -1,0 +1,91 @@
+.header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+.logo {
+}
+.logo {
+  display: block;
+  width: 100px;
+  height: 60px;
+  color: transparent;
+  background-image: url('../img/logo.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.header__nav {
+  @include media-tablet {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+    row-gap: 60px;
+    column-gap: normal;
+  }
+
+  display: flex;
+  column-gap: 40px;
+}
+.header__nav-item {
+  @extend %underlineAnimationDark;
+}
+.header__nav-link {
+  @include font-inter($font-size: 1.6rem, $font-weight: 600);
+
+  @include media-tablet {
+    font-size: 3.2rem;
+  }
+}
+.header__menu {
+  @include font-inter($font-size: 1.6rem, $font-weight: 600);
+
+  display: flex;
+  padding: 0;
+  column-gap: 8px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  &_inactive {
+    @extend %underlineAnimationDark;
+  }
+
+  &_select {
+    @extend %underlineDark;
+
+    pointer-events: none;
+
+    @include media-tablet {
+      pointer-events: all;
+    }
+  }
+  
+  @include media-tablet {
+  justify-content: center;
+  width: max-content;
+  margin: 100px auto 0;
+  font-size: 3.2rem;
+}
+
+}
+
+.dropdown-menu {
+  position: fixed;
+  top: 99px;
+  left: 102%;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: $color-bg-body;
+  opacity: 0;
+  transition: left 0.2s ease-in, opacity 0.2s ease-in;
+
+  &_open {
+    left: 0;
+    opacity: 1;
+  }
+}

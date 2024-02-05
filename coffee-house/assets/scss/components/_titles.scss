@@ -1,0 +1,30 @@
+.primary-title {
+  @include font-inter(
+    $font-size: 7.2rem,
+    $font-weight: 600,
+    $color: $color-text-light,
+    $line-height: 105%
+  );
+
+  @include media-mobile {
+    font-size: 4.2rem;
+    line-height: 115%;
+  }
+}
+
+.secondary-title {
+  @include font-inter(
+    $font-size: 6rem,
+    $font-weight: 600,
+    $color: $color-text-dark,
+    $line-height: 125%
+  );
+
+  &_footer {
+    color: $color-text-light;
+  }
+
+  @include media-mobile {
+    font-size: 3.2rem;
+  }
+}

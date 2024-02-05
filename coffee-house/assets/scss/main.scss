@@ -1,0 +1,22 @@
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+@import 'abstracts/placeholders';
+
+@import 'base/normalize';
+@import 'base/base';
+
+@import 'components/wrapper';
+@import 'components/cup';
+@import 'components/text-accent';
+@import 'components/titles';
+@import 'components/buttons';
+@import 'components/slider';
+@import 'components/menu';
+@import 'components/burger';
+@import 'components/modal';
+@import 'components/visibility-objects';
+
+@import 'layout/header';
+@import 'layout/footer';
+
+@import 'pages/home'

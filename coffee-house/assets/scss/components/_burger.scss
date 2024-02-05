@@ -1,0 +1,51 @@
+%common-styles {
+  content: '';
+  position: absolute;
+  left: 50%;
+  display: block;
+  width: 16px;
+  height: 1.5px;
+  background-color: $color-border-dark;
+  border-radius: 1px;
+  transform: translateX(-50%);
+  transition: transform 0.3s linear, left 0.3s linear, top 0.3s linear;
+}
+
+.burger {
+  position: relative;
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid $color-border-dark;
+  border-radius: 50%;
+  flex-shrink: 0;
+
+  &::before {
+    @extend %common-styles;
+
+    top: 16px;
+  }
+
+  &::after {
+    @extend %common-styles;
+
+    bottom: 16px;
+  }
+
+  &_active {
+    &::before {
+      top: 50%;
+      left: 33%;
+      transform: rotate(45deg);
+    }
+    &::after {
+      top: 50%;
+      left: 33%;
+      transform: rotate(-45deg);
+    }
+  }
+
+  @include media-tablet {
+    display: block;
+  }
+}

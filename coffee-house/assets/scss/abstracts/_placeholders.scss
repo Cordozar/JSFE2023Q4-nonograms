@@ -1,0 +1,18 @@
+%underlineAnimationDark {
+  @include underlineAnimation($color-text-dark);
+}
+
+%underlineAnimationLight {
+  @include underlineAnimation($color-bg-body);
+}
+
+%underlineDark {
+  @include underlineAnimation($color-text-dark);
+
+  &::before {
+    left: auto;
+    width: 100%;
+    opacity: 1;
+    transition: none;
+  }
+}

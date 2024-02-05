@@ -1,0 +1,119 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  display: flex;
+  // display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal__content {
+  display: flex;
+  max-width: 800px;
+  padding: 16px;
+  column-gap: 20px;
+  background-color: $color-bg-body;
+  border-radius: 40px;
+
+  @include media-mobile {
+    max-width: 342px;
+  }
+}
+.modal__img {
+  width: 310px;
+  height: 310px;
+  background-image: url('../img/Menu/coffee-1.jpg');
+  background-size: cover;
+  border-radius: 40px;
+  background-size: 110% 110%;
+  background-position: center;
+
+  @include media-mobile {
+    display: none;
+  }
+}
+
+.modal__information {
+  max-width: 438px;
+
+  @include media-large-tablet {
+    max-width: 326px;
+  }
+}
+.modal__title {
+  @include font-inter(
+    $font-size: 2.4rem,
+    $font-weight: 600,
+    $line-height: 125%
+  );
+
+  margin-bottom: 12px;
+}
+.modal__description {
+  @include font-inter($font-size: 1.6rem, $line-height: 150%);
+
+  margin-bottom: 20px;
+}
+.modal__choice {
+  @include font-inter($font-size: 1.6rem, $line-height: 150%);
+
+  display: block;
+  margin-bottom: 8px;
+}
+.modal__total {
+  @include font-inter(
+    $font-size: 2.4rem,
+    $font-weight: 600,
+    $line-height: 125%
+  );
+
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid $color-border-light;
+}
+.modal__text {
+}
+.modal__price {
+}
+.modal__sale {
+  @include font-inter($font-weight: 600, $line-height: 150%);
+
+  margin-bottom: 29px;
+  padding-left: 24px;
+  background-image: url('../img/Menu/info-empty.svg');
+  background-repeat: no-repeat;
+
+  @include media-large-tablet {
+    line-height: 140%;
+  }
+}
+.modal__close {
+  @include font-inter(
+    $font-size: 1.6rem,
+    $font-weight: 600,
+    $line-height: 150%
+  );
+  @include transition(background-color, color);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 9px 78px;
+  border: 1px solid $color-border-dark;
+  border-radius: 22px;
+  cursor: pointer;
+
+  @include media-hover {
+    &:hover {
+      color: $color-bg-body;
+      background-color: $color-border-dark;
+    }
+  }
+}

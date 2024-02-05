@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Cofee</title>
+  <link rel="stylesheet" href="../../assets/scss/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="../../assets/img/coffee-cup.svg" type="image/x-icon">
+</head>
+
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <a class="logo" href="../index.html"></a>
+      <ul class="header__nav">
+        <li class="header__nav-item">
+          <a href="../index.html#favourites-coffee" class="header__nav-link">Favorite coffee</a>
+        </li>
+        <li class="header__nav-item">
+          <a href="../index.html#about" class="header__nav-link">About</a>
+        </li>
+        <li class="header__nav-item">
+          <a href="../index.html#mobile-app" class="header__nav-link">Mobile app</a>
+        </li>
+        <li class="header__nav-item">
+          <a href="#footer" class="header__nav-link">Contact us</a>
+        </li>
+      </ul>
+      <a class="header__menu header__menu_select" href="#">Menu <span class="cup cup_header"></span></a>
+      <div class="burger"></div>
+    </header>
+  </div>
+
+  <div class="wrapper">
+    <div class="menu">
+      <h1 class="menu__title secondary-title">
+        Behind each of our cups hides an <span class="text-accent">amazing surprise</span>
+      </h1>
+      <div class="tabs">
+        <div class="tabs__flex-container">
+          <div class="tabs__tab tabs__tab_select">
+            <div class="tabs__tab-img"></div>
+            <div class="tabs__tab-name">Coffee</div>
+          </div>
+          <div class="tabs__tab">
+            <div class="tabs__tab-img"></div>
+            <div class="tabs__tab-name">Tea</div>
+          </div>
+          <div class="tabs__tab">
+            <div class="tabs__tab-img"></div>
+            <div class="tabs__tab-name">Dessert</div>
+          </div>
+        </div>
+        <div class="tabs__products" id='tabsContainer'></div>
+        <div class="tabs__refresh"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrapper">
+    <footer class="footer" id="footer">
+      <div class="footer__column">
+        <h2 class="footer__title secondary-title secondary-title_footer">
+          Sip, Savor, Smile. <span class="text-accent">It’s coffee time!</span>
+        </h2>
+        <ul class="footer__social">
+          <li class="footer__social-item">
+            <a class="footer__social-link" href="https://twitter.com/?lang=ru"></a>
+          </li>
+          <li class="footer__social-item">
+            <a class="footer__social-link" href="https://www.instagram.com/"></a>
+          </li>
+          <li class="footer__social-item">
+            <a class="footer__social-link" href="https://www.facebook.com/"></a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer__column">
+        <h3 class="footer__subtitle">
+          Contact us
+        </h3>
+        <div class="footer__flex-container">
+          <a class="footer__contacts" href="https://maps.app.goo.gl/VjdwnrKT3uoxEv7y6" target="_blank">8558 Green
+            Rd., LA</a>
+          <a class="footer__contacts" href="tel:+16035550123">+1 (603) 555-0123</a>
+          <div class="footer__contacts">Mon-Sat: 9:00 AM – 23:00 PM</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div class="modal"></div>
+
+</body>
+
+<script src="../../assets/js/burger.js"></script>
+<script src="../../assets/js/menu.js"></script>
+<script src="../../assets/js/modal.js" defer></script>
+
+</html>

@@ -1,0 +1,130 @@
+.footer {
+  display: flex;
+  align-items: center;
+  padding: 100px 100px 98px 100px;
+  column-gap: 100px;
+  background-color: $color-bg-container;
+  border-radius: 40px;
+
+  @include media-large-tablet {
+    flex-direction: column;
+    row-gap: 100px;
+    padding: 100px 60px;
+  }
+
+  @include media-mobile {
+    row-gap: 40px;
+    padding: 60px 16px;
+  }
+}
+.footer__column {
+  width: 100%;
+
+  &:nth-child(2) {
+    transform: translateY(-2px);
+  }
+}
+.footer__title {
+  margin-bottom: 40px;
+}
+.footer__social {
+  display: inline-flex;
+  column-gap: 12px;
+}
+.footer__social-item {
+}
+.footer__social-link {
+  @include transition(background-image, background-color);
+
+  display: block;
+  width: 60px;
+  height: 60px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  border: 1px solid $color-border-light;
+  border-radius: 50%;
+
+  .footer__social-item:nth-child(1) & {
+    @include media-hover {
+      &:hover {
+        background-color: $color-bg-body;
+        background-image: url('../img/footer/footer-twitter-hover.svg');
+      }
+    }
+
+    background-image: url('../img/footer/footer-twitter.svg');
+  }
+  .footer__social-item:nth-child(2) & {
+    @include media-hover {
+      &:hover {
+        background-color: $color-bg-body;
+        background-image: url('../img/footer/footer-instagram-hover.svg');
+      }
+    }
+
+    background-image: url('../img/footer/footer-instagram.svg');
+  }
+  .footer__social-item:nth-child(3) & {
+    @include media-hover {
+      &:hover {
+        background-color: $color-bg-body;
+        background-image: url('../img/footer/footer-facebook-hover.svg');
+      }
+    }
+
+    background-image: url('../img/footer/footer-facebook.svg');
+  }
+}
+.footer__subtitle {
+  @include font-inter(
+    $font-weight: 600,
+    $font-size: 24px,
+    $color: $color-border-light
+  );
+
+  margin-bottom: 40px;
+}
+.footer__flex-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+.footer__contacts {
+  @include font-inter(
+    $font-size: 16px,
+    $font-weight: 600,
+    $color: $color-text-light,
+    $line-height: 150%
+  );
+
+  position: relative;
+  display: inline-block;
+  width: min-content;
+  padding-left: 28px;
+  white-space: nowrap;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    display: block;
+    width: 20px;
+    height: 20px;
+  }
+
+  &:nth-child(1),
+  &:nth-child(2) {
+    @extend %underlineAnimationLight;
+  }
+
+  &:nth-child(1)::after {
+    background-image: url('../img/footer/footer-location.svg');
+  }
+  &:nth-child(2)::after {
+    background-image: url('../img/footer/footer-phone.svg');
+  }
+  &:nth-child(3)::after {
+    background-image: url('../img/footer/footer-clock.svg');
+  }
+}

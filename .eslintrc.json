@@ -1,0 +1,28 @@
+{
+  "extends": "airbnb-base",
+  "plugins": ["import"],
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "no-plusplus": ["warn", { "allowForLoopAfterthoughts": true }],
+    "dot-notation": "warn",
+    "strict": "off",
+    "prefer-const": "warn",
+    "operator-linebreak": "off",
+    "quotes": ["warn", "single"],
+    "prefer-template": "warn",
+    "no-console": "warn",
+    "no-alert": "warn",
+    "no-continue": "warn",
+    "import/extensions": "off",
+    "comma-dangle": "off",
+    "implicit-arrow-linebreak": "off",
+    "function-paren-newline": "off",
+    "prefer-destructuring": "off",
+    "no-param-reassign": ["error", { "props": false }],
+    "linebreak-style": "off"
+  }
+}
