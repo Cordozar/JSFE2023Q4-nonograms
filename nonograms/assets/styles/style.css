@@ -167,9 +167,7 @@ input[type='radio']:checked + label {
   column-gap: 15px;
 }
 
-.pictures__picture {
-  text-transform: capitalize;
-  text-decoration: underline;
+.pictures__picture-label {
   cursor: pointer;
 }
 
