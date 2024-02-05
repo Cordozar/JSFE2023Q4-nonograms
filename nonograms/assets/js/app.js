@@ -8,7 +8,7 @@ const timerField = document.querySelector('.timer');
 function getRandomPicture(complexity) {
   const arrPictures = Object.entries(templates[complexity]);
   const indexRandom = Math.floor(arrPictures.length * Math.random());
-  console.log(arrPictures[indexRandom][1]);
+  // console.log(arrPictures[indexRandom][1]);
   return arrPictures[indexRandom][1];
 }
 
@@ -365,7 +365,7 @@ function choosePicture() {
       topClues.innerHTML = '';
       leftClues.innerHTML = '';
       template = templates[chooseComplexity][picture.innerText];
-      console.log(template);
+      // console.log(template);
       curMatrix = createCrossword(size, 30);
       createCluesPanel(calculateClues(template).rows, leftClues);
       createCluesPanel(calculateClues(template).cols, topClues);
@@ -453,3 +453,72 @@ function stopTimer() {
   clearInterval(timer);
   timerField.textContent = '00:00:00';
 }
+
+// Рандомная игра
+
+function getRandomGame() {
+  // const arrPictures = Object.entries(templates[complexity]);
+  // const indexRandom = Math.floor(arrPictures.length * Math.random());
+  // console.log(arrPictures[indexRandom][1]);
+  // return arrPictures[indexRandom][1];
+
+  const arrComplexity = Object.entries(templates);
+  const indexComplexity = Math.floor(arrComplexity.length * Math.random());
+
+  const randomComplexity = arrComplexity[indexComplexity][0];
+  console.log(randomComplexity);
+
+  const radioInputs = document.querySelectorAll('.complexites__radio');
+  radioInputs.forEach((el) => {
+    if (el.id === randomComplexity) {
+      el.checked = true;
+      size = +document.querySelectorAll('.complexites__radio-label')[
+        indexComplexity
+      ].dataset.size;
+      crossword.innerHTML = '';
+      topClues.innerHTML = '';
+      leftClues.innerHTML = '';
+      chooseComplexity = el.innerText;
+      template = getRandomPicture(randomComplexity);
+      curMatrix = createCrossword(size, 30);
+      createCluesPanel(calculateClues(template).rows, leftClues);
+      createCluesPanel(calculateClues(template).cols, topClues);
+      splitMatrix('.top-clues', 'cols');
+      splitMatrix('.left-clues', 'rows');
+      splitMatrix('.crossword', 'both');
+      addListenerForCells();
+      addPictureSection(randomComplexity);
+      choosePicture();
+      stopTimer();
+      crossword.addEventListener('mousedown', startTimer, { once: true });
+      el.checked = true;
+    }
+  });
+
+  // {
+  //   size = +el.dataset.size;
+  //   crossword.innerHTML = '';
+  //   topClues.innerHTML = '';
+  //   leftClues.innerHTML = '';
+  //   chooseComplexity = el.innerText;
+  //   template = getRandomPicture(chooseComplexity);
+  //   curMatrix = createCrossword(size, 30);
+  //   createCluesPanel(calculateClues(template).rows, leftClues);
+  //   createCluesPanel(calculateClues(template).cols, topClues);
+  //   splitMatrix('.top-clues', 'cols');
+  //   splitMatrix('.left-clues', 'rows');
+  //   splitMatrix('.crossword', 'both');
+  //   addListenerForCells();
+  //   addPictureSection(chooseComplexity);
+  //   choosePicture();
+  //   stopTimer();
+  //   crossword.addEventListener('mousedown', startTimer, { once: true });
+  // }
+}
+
+const randomGameBtn = document.querySelector('.random');
+randomGameBtn.addEventListener('click', () => {
+  getRandomGame();
+});
+
+// getRandomGame();

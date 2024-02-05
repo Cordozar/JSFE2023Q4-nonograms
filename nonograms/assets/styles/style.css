@@ -9,7 +9,7 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  row-gap: 40px;
+  row-gap: 20px;
 }
 
 .game {
@@ -181,4 +181,15 @@ input[type='radio']:checked + label {
 .timer {
   display: flex;
   column-gap: 10px;
+}
+
+.random {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  background-color: #7eb177;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
