@@ -3,6 +3,7 @@ import templates from './templates.js';
 let size = 5;
 const sizeCells = 30;
 let chooseComplexity = 'easy';
+const timerField = document.querySelector('.timer');
 
 function getRandomPicture(complexity) {
   const arrPictures = Object.entries(templates[complexity]);
@@ -222,12 +223,14 @@ const modal = document.querySelector('.modal');
 
 function gameOver() {
   setTimeout(() => {
-    const modalImg = modal.querySelector('.modal__img');
     const modalResult = modal.querySelector('.modal__result');
 
-    modalImg.src = './img/win.gif';
-    modalResult.innerText = 'You Win!';
+    const seconds = timerField.innerText.split(':');
+    modalResult.innerText = `Great! You have solved the nonogram in ${
+      +seconds[0] * 60 + +seconds[1]
+    } seconds!`;
 
+    stopTimer();
     modal.classList.add('show');
   }, 300);
 }
@@ -313,6 +316,7 @@ startBtn.addEventListener('click', () => {
   addListenerForCells();
   addPictureSection(chooseComplexity);
   choosePicture();
+  crossword.addEventListener('mousedown', startTimer, { once: true });
   modal.classList.remove('show');
 });
 
@@ -369,6 +373,8 @@ function choosePicture() {
       splitMatrix('.left-clues', 'rows');
       splitMatrix('.crossword', 'both');
       addListenerForCells();
+      stopTimer();
+      crossword.addEventListener('mousedown', startTimer, { once: true });
     });
   });
 }
@@ -395,6 +401,8 @@ complexityInputs.forEach((el, i) => {
       addListenerForCells();
       addPictureSection(chooseComplexity);
       choosePicture();
+      stopTimer();
+      crossword.addEventListener('mousedown', startTimer, { once: true });
     }
   });
 });
@@ -402,6 +410,8 @@ complexityInputs.forEach((el, i) => {
 const resetBtn = document.querySelector('.restart');
 
 resetBtn.addEventListener('click', () => {
+  stopTimer();
+  crossword.addEventListener('mousedown', startTimer);
   const cells = crossword.querySelectorAll('.cell');
   cells.forEach((cell) => {
     cell.classList.remove('filled');
@@ -413,11 +423,33 @@ resetBtn.addEventListener('click', () => {
   }
 });
 
-function handleRightClick(event) {
-  // Предотвращаем стандартное контекстное меню
-  event.preventDefault();
+// Таймер
 
-  // Ваш код для выполнения при нажатии правой кнопки мыши
+let timer;
+timerField.textContent = '00:00';
 
-  // Добавьте свою логику здесь
+crossword.addEventListener('mousedown', startTimer, { once: true });
+
+function startTimer() {
+  const startTimerDate = Date.parse(new Date());
+
+  function getZero(num) {
+    if (num >= 0 && num < 10) {
+      return `0${num}`;
+    }
+    return num;
+  }
+
+  timer = setInterval(() => {
+    const t = Date.parse(new Date()) - startTimerDate;
+    const seconds = Math.floor((t / 1000) % 60);
+    const minutes = Math.floor((t / 1000 / 60) % 60);
+
+    timerField.textContent = `${getZero(minutes)}:${getZero(seconds)}`;
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timer);
+  timerField.textContent = '00:00:00';
 }
