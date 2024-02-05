@@ -463,7 +463,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function stopTimer() {
     clearInterval(timer);
-    timerField.textContent = '00:00:00';
+    timerField.textContent = '00:00';
   }
 
   // Рандомная игра
