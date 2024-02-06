@@ -6,19 +6,20 @@ body.innerHTML = `<div class="game">
                     <div class="crossword" id="crossword"></div>
                     <div class="top-clues" id="top-clues"></div>
                     <div class="left-clues" id="left-clues"></div>
-                    </div>
-                    <div class="timer">
-                    </div>
-                    <form action="#" class="pictures">
-                    </form>
-                    <form action="#" class="complexites"></form>
+                  </div>
+                  <div class="timer"></div>
+                  <form action="#" class="pictures"></form>
+                  <form action="#" class="complexites"></form>
+                  <div class="optional">
                     <button class="restart">Reset game</button>
                     <button class="random">Random game</button>
-                    <div class="modal">
-                    <div class="modal__content">
-                      <span class="modal__result"></span>
-                      <button class="modal__start">Play Again</button>
-                    </div>
+                    <button class="solution">Solution</button>
+                  </div>
+                  <div class="modal">
+                  <div class="modal__content">
+                    <span class="modal__result"></span>
+                    <button class="modal__start">Play Again</button>
+                  </div>
                   </div>`;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   let template = getRandomPicture(chooseComplexity);
+  console.log(template);
 
   // Создание кроссворда
 
@@ -271,7 +273,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log(true);
     gameOver();
-    // template = getRandomPicture(document.querySelector('input:checked').id);
   }
 
   function addListenerForCells() {
@@ -375,7 +376,6 @@ document.addEventListener('DOMContentLoaded', () => {
         topClues.innerHTML = '';
         leftClues.innerHTML = '';
         template = templates[chooseComplexity][picture.innerText];
-        // console.log(template);
         curMatrix = createCrossword(size, 30);
         createCluesPanel(calculateClues(template).rows, leftClues);
         createCluesPanel(calculateClues(template).cols, topClues);
@@ -506,5 +506,32 @@ document.addEventListener('DOMContentLoaded', () => {
   const randomGameBtn = document.querySelector('.random');
   randomGameBtn.addEventListener('click', () => {
     getRandomGame();
+  });
+
+  const solutionBtn = document.querySelector('.solution');
+  solutionBtn.addEventListener('click', () => {
+    const cells = crossword.querySelectorAll('.cell');
+    for (let i = 0; i < size; i += 1) {
+      for (let j = 0; j < size; j += 1) {
+        const selectCell = crossword.querySelector(`[data-cell="${i} ${j}"]`);
+        curMatrix[i][j] = 0;
+        if (template[i][j] === 1) {
+          selectCell.classList.remove('mark');
+          selectCell.classList.add('filled');
+        } else {
+          selectCell.classList.remove('filled');
+          selectCell.classList.remove('mark');
+        }
+      }
+    }
+    stopTimer();
+    crossword.addEventListener('mousedown', startTimer, { once: true });
+    setTimeout(() => {
+      alert('The solution has been reviewed.');
+
+      cells.forEach((cell) => {
+        cell.classList.remove('filled');
+      });
+    }, 0);
   });
 });

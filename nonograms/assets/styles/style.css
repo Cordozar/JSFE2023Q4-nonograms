@@ -151,10 +151,14 @@ input[type='radio']:checked + label {
   border: black solid 2px;
 }
 
-.restart {
+.optional {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  column-gap: 20px;
+}
+
+.restart,
+.random,
+.solution {
   padding: 5px;
   background-color: #7eb177;
   border: none;
@@ -179,15 +183,4 @@ input[type='radio']:checked + label {
 .timer {
   display: flex;
   column-gap: 10px;
-}
-
-.random {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-  background-color: #7eb177;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
