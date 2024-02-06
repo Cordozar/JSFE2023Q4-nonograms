@@ -485,7 +485,7 @@ document.addEventListener('DOMContentLoaded', () => {
         crossword.innerHTML = '';
         topClues.innerHTML = '';
         leftClues.innerHTML = '';
-        chooseComplexity = el.innerText;
+        chooseComplexity = randomComplexity;
         template = getRandomPicture(randomComplexity);
         curMatrix = createCrossword(size, 30);
         createCluesPanel(calculateClues(template).rows, leftClues);
