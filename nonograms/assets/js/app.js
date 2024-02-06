@@ -423,10 +423,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   resetBtn.addEventListener('click', () => {
     stopTimer();
-    crossword.addEventListener('mousedown', startTimer);
+    crossword.addEventListener('mousedown', startTimer, { once: true });
     const cells = crossword.querySelectorAll('.cell');
     cells.forEach((cell) => {
       cell.classList.remove('filled');
+      cell.classList.remove('mark');
     });
     for (let i = 0; i < size; i += 1) {
       for (let j = 0; j < size; j += 1) {
